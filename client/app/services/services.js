@@ -33,6 +33,7 @@ angular.module('hackoverflow.services', [])
       created: created
     };
     console.log('create post: ', newPost);
+
     return $http({
       method: 'POST',
       url: '/api/post',
@@ -51,6 +52,7 @@ angular.module('hackoverflow.services', [])
       created: created
     };
     console.log('edited post: ', editedPost);
+
     return $http({
       method: 'PUT',
       url: '/api/post/' + postId,
@@ -115,7 +117,11 @@ angular.module('hackoverflow.services', [])
     });
   };
 
+
   // no edit comments for now. v2.
+
+  // TODO: Edit Comments
+
   // var editComment = function(commentId) {
   //   return $http({
   //     method: 'PUT',
