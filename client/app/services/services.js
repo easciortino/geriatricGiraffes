@@ -33,7 +33,7 @@ angular.module('hackoverflow.services', [])
     };
 
     console.log('create post: ', newPost);
-    
+
     return $http({
       method: 'POST',
       url: '/api/post',
@@ -52,7 +52,7 @@ angular.module('hackoverflow.services', [])
     };
 
     console.log('edited post: ', editedPost);
-   
+
     return $http({
       method: 'PUT',
       url: '/api/post/' + postId,
@@ -62,7 +62,7 @@ angular.module('hackoverflow.services', [])
 
   var deletePost = function (postId) {
     console.log(postId + ' is for deleting');
-   
+
     return $http({
       method: 'DELETE',
       url: '/api/post/' + postId
@@ -108,9 +108,9 @@ angular.module('hackoverflow.services', [])
       author: author,
       created: created
     };
-   
+
     console.log('new comment: ', newComment);
-   
+
     return $http({
       method: 'POST',
       url: '/api/post/' + postId + '/comments',
@@ -118,7 +118,7 @@ angular.module('hackoverflow.services', [])
     });
   };
 
-  // TODO: Edit Comments 
+  // TODO: Edit Comments
   // var editComment = function(commentId) {
   //   return $http({
   //     method: 'PUT',
@@ -148,12 +148,12 @@ angular.module('hackoverflow.services', [])
     createComment: createComment,
     // editComment: editComment,
     deleteComment: deleteComment,
-    getNumberComments: getNumberComments
+    // getNumberComments: getNumberComments
   };
 
 })
 
-// AUTHENTICATION 
+// AUTHENTICATION
 // TODO: Not yet connected
 // .factory('Auth', function($http, $location, $window) {
 
