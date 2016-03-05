@@ -45,16 +45,16 @@ require('./config/middleware.js')(app, express);
 
 
 var port = process.env.PORT || 8100;
-
 // app.listen(port)
-var io = require('socket.io').listen(app.listen(port));
+var io = require ('socket.io').listen(app.listen(port));
 
-io.on('connection', function(socket) {
-  console.log('SOCKET WORKING');
-  socket.on('send msg', function(msg) {
-    io.emit('get msg', msg);
-    console.log("MSG", msg);
-  });
+
+io.on('connection', function(socket){  
+    console.log('SOCKET WORKING')
+    socket.on('send msg', function(msg){
+      io.emit('get msg', msg);
+      console.log("MSG",msg)
+    })
   // socket.on('disconnect', function(){
   //   console.log('user disconnected');
   // });
