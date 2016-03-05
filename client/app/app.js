@@ -2,6 +2,7 @@ angular.module('hackoverflow', [
   'hackoverflow.chat',
   'hackoverflow.services',
   'hackoverflow.posts',
+  'hackoverflow.postsChart',
   'hackoverflow.add-post',
   'hackoverflow.edit-post',
   'hackoverflow.comments',
@@ -38,6 +39,7 @@ angular.module('hackoverflow', [
 //   // defaults to main page if user reloads a page.
 //   $location.path("/");
 // })
+
 
 .config(function($httpProvider, $urlRouterProvider,
 $stateProvider, $locationProvider, $authProvider) {
