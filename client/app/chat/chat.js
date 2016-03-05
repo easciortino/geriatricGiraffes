@@ -5,13 +5,15 @@ angular.module('hackoverflow.chat', [
 .config(function ($stateProvider) {
 })
 
-.controller('ChatController', function ($scope, Socket, $state){
-  $scope.msgs = [];
+.controller('ChatController', function ($scope, socket, $state){
+  $scope.msgs = ['chat', 'is', 'not'];
   $scope.sendMsg = function(){
-    Socket.emit('send msg', $scope.msg.text);
+    socket.emit('send msg', $scope.msg.text);
+    // console.log($scope.msg.text)
   }
-  Socket.on('get mgs', function(data){
-    $scope.msgs(data);
-    $scope.$digest();
+  socket.on('get msg', function(msg){
+    $scope.msgs.push(msg);
+    console.log("DATA", msg)
+    // $scope.$digest();
   })
 })

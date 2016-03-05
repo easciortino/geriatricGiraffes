@@ -49,11 +49,15 @@ var port = process.env.PORT || 8100;
 // app.listen(port)
 var io = require ('socket.io').listen(app.listen(port));
 
-io.sockets.on('connection', function(socket){  
+io.on('connection', function(socket){  
     console.log('SOCKET WORKING')
-    socket.on('send msg', function(data){
-      io.sockets.emit('get msg', data)
+    socket.on('send msg', function(msg){
+      io.emit('get msg', msg);
+      console.log("MSG",msg)
     })
+  // socket.on('disconnect', function(){
+  //   console.log('user disconnected');
+  // });
 })
 
 

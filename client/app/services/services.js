@@ -204,9 +204,9 @@ angular.module('hackoverflow.services', [])
 }])
 
 //Added conection to socket/server
-.factory('Socket', function() {
+.factory('socket', function() {
 
-  var socket = io.connect('http://localhost:8100');
+  var socket = io.connect();
   return socket;
 
 });
