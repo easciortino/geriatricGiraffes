@@ -45,9 +45,9 @@ require('./config/middleware.js')(app, express);
  //app.use(express.static(__dirname + '/../client'));
 
 var port = process.env.PORT || 8100;
-
 // app.listen(port)
 var io = require ('socket.io').listen(app.listen(port));
+
 
 io.on('connection', function(socket){  
     console.log('SOCKET WORKING')
