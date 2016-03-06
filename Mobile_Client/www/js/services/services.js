@@ -6,23 +6,23 @@ angular.module('hackoverflow.services', [])
 
   var getForums = function() {
     return $http({
-      method: 'GET',
-      url: 'js/config/forums.json'
-    })
-    .then(function ( response ){
-      return response;
-    });
+        method: 'GET',
+        url: 'js/config/forums.json'
+      })
+      .then(function(response) {
+        return response;
+      });
   };
 
   var getPosts = function(forum) {
     return $http({
-      method: 'GET',
-      url: 'http://hackoverflow2.herokuapp.com/api/post/' + forum
-    })
-    .then(function ( response ){
-      return response;
+        method: 'GET',
+        url: 'http://hackoverflow2.herokuapp.com/api/post/' + forum
+      })
+      .then(function(response) {
+        return response;
       });
-    };
+  };
 
   var createPost = function(title, body, forum, author, created) {
     var newPost = {
@@ -79,27 +79,27 @@ angular.module('hackoverflow.services', [])
 
 // COMMENTS
 
-.factory('Comments', function ( $http ) {
+.factory('Comments', function($http) {
 
   var getComments = function(postId) {
     console.log(postId + " is postId");
     return $http({
-      method: 'GET',
-      url: 'http://hackoverflow2.herokuapp.com/api/post/' + postId + '/comments'
-    })
-    .then(function(response) {
-      return response;
+        method: 'GET',
+        url: 'http://hackoverflow2.herokuapp.com/api/post/' + postId + '/comments'
+      })
+      .then(function(response) {
+        return response;
       });
-    };
+  };
 
   var getNumberOfComments = function(postId) {
     return $http({
-      method: 'GET',
-      url: 'http://hackoverflow2.herokuapp.com/api/post/' + postId + '/commentsNumber'
-    })
-    .then(function(response) {
-      return response;
-    });
+        method: 'GET',
+        url: 'http://hackoverflow2.herokuapp.com/api/post/' + postId + '/commentsNumber'
+      })
+      .then(function(response) {
+        return response;
+      });
   };
 
   var createComment = function(postId, body, author, created) {
@@ -155,18 +155,18 @@ angular.module('hackoverflow.services', [])
 
   var getUser = function getUser() {
     return $http({
-      method: 'POST',
-      url: 'http://hackoverflow2.herokuapp.com/api/me/'
-    })
-    .then(function ( response ){
-      console.log('response.data',response.data);
-      user = response.data;
-      return response;
+        method: 'GET',
+        url: 'http://hackoverflow2.herokuapp.com/api/me/'
+      })
+      .then(function(response) {
+        console.log('response.data', response.data);
+        user = response.data;
+        return response;
       });
-    };
+  };
 
-  var returnUser = function(){
-    console.log('return user',user);
+  var returnUser = function() {
+    console.log('return user', user);
     return user;
   };
 
@@ -188,7 +188,7 @@ angular.module('hackoverflow.services', [])
 
 })
 
-.factory('ForumService', ['$rootScope', function ($rootScope) {
+.factory('ForumService', ['$rootScope', function($rootScope) {
 
   var currentForum = {
 
@@ -196,11 +196,11 @@ angular.module('hackoverflow.services', [])
       forum: 'Algorithms'
     },
 
-    SaveState: function () {
+    SaveState: function() {
       sessionStorage.ForumService = angular.toJson(currentForum.model);
     },
 
-    RestoreState: function () {
+    RestoreState: function() {
       currentForum.model = angular.fromJson(sessionStorage.ForumService);
     }
   };
@@ -211,4 +211,13 @@ angular.module('hackoverflow.services', [])
   return {
     currentForum: currentForum
   };
-}]);
+
+}])
+
+//Added conection to socket/server
+.factory('socket', function() {
+
+  var socket = io.connect('https://hackoverflow2.herokuapp.com');
+  return socket;
+
+});
