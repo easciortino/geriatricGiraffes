@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'hackoverflow.services',
+angular.module('starter', ['ionic', 'starter.controllers', 'hackoverflow.chat', 'hackoverflow.services',
   'hackoverflow.posts',
   'hackoverflow.add-post',
   'hackoverflow.edit-post',
@@ -45,7 +45,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   // Each state's controller can be found in controllers.js
   $stateProvider
 
-  .state('signin', {
+    .state('signin', {
     url: '/signin',
     templateUrl: 'js/auth/signin.html',
     controller: 'AuthController'
@@ -79,7 +79,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     })
     .state('tab.posts-comments', {
-      params: {'post': null},
+      params: {
+        'post': null
+      },
       url: '/comments',
       views: {
         'tab-posts': {
@@ -92,30 +94,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       url: '/chats',
       views: {
         'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
+          templateUrl: 'js/chat/chat.html',
+          controller: 'ChatController'
         }
       }
     })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
+    .state('tab.account', {
+      url: '/account',
+      cache: false,
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
+        'tab-account': {
+          templateUrl: 'templates/tab-account.html',
+          controller: 'AccountCtrl'
         }
       }
-    })
-  .state('tab.account', {
-    url: '/account',
-    cache: false,
-    views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
-      }
-    }
-  });
+    });
 
   // if none of the above states are matched, use this as the fallback
   // $urlRouterProvider.otherwise('/tab/posts');
