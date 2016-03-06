@@ -55,6 +55,12 @@ $stateProvider
     templateUrl: 'app/posts/posts.html',
     controller: 'PostsController'
   })
+  .state('posts.chat', {
+    params: {'forum': 'Angular'},
+    url: '/:chat',
+    templateUrl: 'app/posts/posts.chat.html',
+    controller: 'ChatController'
+  })
   .state('add-post', {
     url: '/add-post',
     templateUrl: 'app/posts/add-post.html',
@@ -77,14 +83,4 @@ $stateProvider
     templateUrl: 'app/auth/signin.html',
     controller: 'AuthController'
   })
-  // .state('signup', {
-  //   // url: '/signup',
-  //   templateUrl: 'app/auth/signup.html',
-  //   controller: 'AuthController'
-  // })
-  .state('chat', {
-    url: '/chat',
-    templateUrl: 'app/chat/chat.html',
-    controller: 'ChatController'
-  });
 });
