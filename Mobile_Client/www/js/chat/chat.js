@@ -1,9 +1,11 @@
 angular.module('hackoverflow.chat', [
-    'hackoverflow.services',
-    'ui.router'
-  ])
+  'hackoverflow.services',
+  'ui.router'
+])
 
-.controller('ChatController', function($scope, socket) {
+.controller('ChatController', function($scope, socket, $ionicScrollDelegate, Auth, $state) {
+  $scope.user = Auth.returnUser();
+
   $scope.msgs = [];
   $scope.text = '';
 
@@ -16,7 +18,9 @@ angular.module('hackoverflow.chat', [
   // client receives message from server
   socket.on('get msg', function(msg) {
     $scope.msgs.push(msg);
-
+    if ($state.is('tab.chats')) {
+      $ionicScrollDelegate.scrollBottom();
+    }
     $scope.$digest();
   });
 });
