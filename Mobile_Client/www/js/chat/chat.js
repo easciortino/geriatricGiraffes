@@ -4,11 +4,11 @@ angular.module('hackoverflow.chat', [
 ])
 
 .controller('ChatController', function($scope, socket, $ionicScrollDelegate, Auth, $state) {
+  $scope.user = Auth.returnUser();
+
   $scope.msgs = [];
   $scope.text = '';
 
-  $scope.user = Auth.returnUser();
-  $ionicScrollDelegate.scrollBottom();
   $scope.sendMsg = function(msg) {
     // greatest line of code ever written
     $scope.$$childTail.text = null;
