@@ -50,40 +50,45 @@ $stateProvider, $locationProvider, $authProvider) {
 
 // $locationProvider.html5Mode(true);
 
-$urlRouterProvider.otherwise('signin');
-$stateProvider
-  .state('posts', {
-    params: {'forum': 'Angular'},
-    url: '/',
-    templateUrl: 'app/posts/posts.html',
-    controller: 'PostsController'
-  })
-  .state('posts.chat', {
-    params: {'forum': 'Angular'},
-    url: '/:chat',
-    templateUrl: 'app/posts/posts.chat.html',
-    controller: 'ChatController'
-  })
-  .state('add-post', {
-    url: '/add-post',
-    templateUrl: 'app/posts/add-post.html',
-    controller: 'AddPostController'
-  })
-  .state('edit-post', {
-    params: {'post': null},
-    url: '/edit-post',
-    templateUrl: 'app/posts/add-post.html',
-    controller: 'EditPostController'
-  })
-  .state('comments', {
-    params: {'post': null},
-    url: '/comments',
-    templateUrl: 'app/comments/comments.html',
-    controller: 'ChatController'
-  })
-  .state('signin', {
-    url: '/signin',
-    templateUrl: 'app/auth/signin.html',
-    controller: 'AuthController'
-  })
+
+  $urlRouterProvider.otherwise('signin');
+  $stateProvider
+    .state('posts', {
+      params: {'forum': 'Angular'},
+      // url: '/',
+      templateUrl: 'app/posts/posts.html',
+      controller: 'PostsController'
+    })
+    .state('add-post', {
+      // url: '/add-post',
+      templateUrl: 'app/posts/add-post.html',
+      controller: 'AddPostController'
+    })
+    .state('edit-post', {
+      params: {'post': null},
+      // url: '/edit-post',
+      templateUrl: 'app/posts/add-post.html',
+      controller: 'EditPostController'
+    })
+    .state('comments', {
+      params: {'post': null},
+      // url: '/comments',
+      templateUrl: 'app/comments/comments.html',
+      controller: 'CommentsController'
+    })
+    .state('signin', {
+      url: '/',
+      templateUrl: 'app/auth/signin.html',
+      controller: 'AuthController'
+    })
+    .state('signup', {
+      // url: '/signup',
+      templateUrl: 'app/auth/signup.html',
+      controller: 'AuthController'
+    })
+    .state('user', {
+      url: '/userprofile',
+      templateUrl: 'app/user/user.html',
+      controller: 'UserController'
+    })
 });
