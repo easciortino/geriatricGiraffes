@@ -1,12 +1,14 @@
 angular.module('hackoverflow.chat', [
-    'hackoverflow.services',
-    'ui.router'
-  ])
+  'hackoverflow.services',
+  'ui.router'
+])
 
-.controller('ChatController', function($scope, socket) {
+.controller('ChatController', function($scope, socket, $ionicScrollDelegate, Auth, $state) {
   $scope.msgs = [];
   $scope.text = '';
 
+  $scope.user = Auth.returnUser();
+  $ionicScrollDelegate.scrollBottom();
   $scope.sendMsg = function(msg) {
     // greatest line of code ever written
     $scope.$$childTail.text = null;
@@ -16,7 +18,9 @@ angular.module('hackoverflow.chat', [
   // client receives message from server
   socket.on('get msg', function(msg) {
     $scope.msgs.push(msg);
-
+    if ($state.is('tab.chats')) {
+      $ionicScrollDelegate.scrollBottom();
+    }
     $scope.$digest();
   });
 });
