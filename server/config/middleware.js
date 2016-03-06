@@ -10,7 +10,7 @@ var jwt = require('jwt-simple');
 var moment = require('moment');
 var colors = require('colors');
 
-var config = require('./config');
+// var config = require('./config');
 
 module.exports = function(app, express) {
   var userRouter = express.Router();
