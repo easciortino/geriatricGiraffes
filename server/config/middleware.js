@@ -56,7 +56,7 @@ module.exports = function(app, express) {
 
     var payload = null;
     try {
-      payload = jwt.decode(token, (config.TOKEN_SECRET || process.env.TOKEN_SECRET));
+      payload = jwt.decode(token, (process.env.TOKEN_SECRET || config.TOKEN_SECRET));
     } catch (err) {
       return res.status(401).send({
         message: err.message
@@ -84,7 +84,7 @@ module.exports = function(app, express) {
       iat: moment().unix(),
       exp: moment().add(14, 'days').unix()
     };
-    return jwt.encode(payload, (config.TOKEN_SECRET || process.env.TOKEN_SECRET));
+    return jwt.encode(payload, (process.env.TOKEN_SECRET || config.TOKEN_SECRET));
   }
 
   /*
@@ -136,7 +136,7 @@ module.exports = function(app, express) {
     var params = {
       code: req.body.code,
       client_id: req.body.clientId,
-      client_secret: config.GITHUB_SECRET || process.env.GITHUB_SECRET,
+      client_secret: process.env.GITHUB_SECRET || config.GITHUB_SECRET,
       redirect_uri: req.body.redirectUri
     };
 
@@ -168,7 +168,7 @@ module.exports = function(app, express) {
               });
             }
             var token = req.header('Authorization').split(' ')[1];
-            var payload = jwt.decode(token, (config.TOKEN_SECRET || process.env.TOKEN_SECRET));
+            var payload = jwt.decode(token, (process.env.TOKEN_SECRET || config.TOKEN_SECRET));
             User.findById(payload.sub, function(err, user) {
               if (!user) {
                 return res.status(400).send({
