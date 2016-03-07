@@ -60,9 +60,6 @@ angular.module('hackoverflow.posts', [
     post.votes++;
     Posts.editPost(post._id, $scope.title,
       $scope.body, $scope.forum, $scope.author, new Date(), post.votes )
-
-    $state.go('posts', { 'forum': $scope.forum });
-
   };
 
   $scope.getPosts($scope.forum);

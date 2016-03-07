@@ -22,12 +22,13 @@
 
 .num-comments {
   float: right;
+  padding-top: 9px;
   font-weight: 600;
 }
 
 .votes {
   font-weight: 600;
-  padding-left: 150px;
+  padding-left: 170px;
 }
 
 .sidebar {
