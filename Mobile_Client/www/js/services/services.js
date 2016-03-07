@@ -117,7 +117,6 @@ angular.module('hackoverflow.services', [])
     });
   };
 
-
   // no edit comments for now. v2.
 
   // TODO: Edit Comments
@@ -189,15 +188,12 @@ angular.module('hackoverflow.services', [])
 .factory('ForumService', ['$rootScope', function($rootScope) {
 
   var currentForum = {
-
     model: {
       forum: 'Algorithms'
     },
-
     SaveState: function() {
       sessionStorage.ForumService = angular.toJson(currentForum.model);
     },
-
     RestoreState: function() {
       currentForum.model = angular.fromJson(sessionStorage.ForumService);
     }

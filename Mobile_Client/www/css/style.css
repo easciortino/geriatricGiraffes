@@ -18,3 +18,9 @@
   float: right;
   margin: 14px 20px 0 0;
 }
+
+.bottom-right {
+   position:absolute;
+   /*bottom: 0;*/
+   right: 0;
+ }
