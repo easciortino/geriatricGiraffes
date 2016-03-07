@@ -126,7 +126,7 @@ module.exports = function(app, express) {
     var accessTokenUrl = 'https://github.com/login/oauth/access_token';
     var userApiUrl = 'https://api.github.com/user';
     var md = new MobileDetect(req.headers['user-agent']);
-    console.log('\n\n### We found md ###\n\n');
+    console.log('\n\n### req.body.redirectUri ###\n\n',req.body.redirectUri);
     if (md.maxPhoneWidth === 600) {
       console.log('\n\n### Mobile user is being authenticated.\n\n');
       var params = {
