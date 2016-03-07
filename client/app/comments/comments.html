@@ -41,7 +41,7 @@
 
   <div class="comment-form">
     <form name="addCommentForm"
-          ng-submit="submit()">
+          ng-submit="submit(newCommentBody)">
         <textarea ng-model="newCommentBody"
                   class="boxsizingBorder"
                   required
@@ -51,5 +51,6 @@
                 ng-Class="(newCommentBody) ? 'buttonEnabled' : 'buttonDisabled'">
                 Post a Comment </button>
     </form>
-  </div> 
+  </div>
+  
 </div>
