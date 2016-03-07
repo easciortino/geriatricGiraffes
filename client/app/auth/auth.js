@@ -16,6 +16,7 @@ angular.module('hackoverflow.auth', [
     $auth.logout();
     $auth.authenticate(provider)
       .then(function(response) {
+        console.log('$auth.response',response);
         Auth.getUser()
           .then(function(response){
             $window.localStorage.setItem('com.ho', response.data._id);
