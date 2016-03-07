@@ -22,7 +22,13 @@
 
 .num-comments {
   float: right;
+  padding-top: 9px;
   font-weight: 600;
+}
+
+.votes {
+  font-weight: 600;
+  padding-left: 170px;
 }
 
 .sidebar {
@@ -42,6 +48,10 @@
 
 #posts-container {
   position: relative;
+}
+
+.cursor, .sidebar {
+  cursor: pointer;
 }
 
 .forum {
