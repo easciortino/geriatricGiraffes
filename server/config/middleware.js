@@ -126,13 +126,22 @@ module.exports = function(app, express) {
     var accessTokenUrl = 'https://github.com/login/oauth/access_token';
     var userApiUrl = 'https://api.github.com/user';
     var md = new MobileDetect(req.headers['user-agent']);
-    console.log('\n###MobileDetect\n',md.maxPhoneWidth);
-    var params = {
-      code: req.body.code,
-      client_id: req.body.clientId,
-      client_secret: process.env.GITHUB_SECRET || config.GITHUB_SECRET,
-      redirect_uri: req.body.redirectUri
-    };
+    console.log('\n###MobileDetect\n', md.maxPhoneWidth);
+    if (md.maxPhoneWidth === 600) {
+      var params = {
+        code: req.body.code,
+        client_id: req.body.clientId,
+        client_secret: process.env.GITHUB_MOBILE_SECRET || config.GITHUB_SECRET,
+        redirect_uri: req.body.redirectUri
+      };
+    } else {
+      var params = {
+        code: req.body.code,
+        client_id: req.body.clientId,
+        client_secret: process.env.GITHUB_SECRET || config.GITHUB_SECRET,
+        redirect_uri: req.body.redirectUri
+      };
+    }
 
     // Step 1. Exchange authorization code for access token.
     request.get({
