@@ -25,12 +25,9 @@
   font-weight: 600;
 }
 
-.votes {
+.votes, i {
   font-weight: 600;
-  margin: auto;
-  width: 60%;
-  padding: 10px;
-  padding-left: 200px;
+  padding-left: 150px;
 }
 
 .sidebar {
