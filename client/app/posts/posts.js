@@ -32,7 +32,9 @@ angular.module('hackoverflow.posts', [
       }
     });
   };
-
+  $scope.setUsername = function (username) {
+    console.log('redirecting to...' + username);
+  }
   $scope.getForums = function getForums(forum) {
     Posts.getForums().then(function (data) {
       $scope.forums = data.data.sort();
