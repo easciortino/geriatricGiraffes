@@ -47,7 +47,7 @@ module.exports = function(app, express) {
 
     var payload = null;
     try {
-      payload = jwt.decode(token, (process.env.TOKEN_SECRET || config.TOKEN_SECRET));
+      payload = jwt.decode(token, process.env.TOKEN_SECRET);
     } catch (err) {
       return res.status(401).send({
         message: err.message
@@ -74,7 +74,7 @@ module.exports = function(app, express) {
       iat: moment().unix(),
       exp: moment().add(14, 'days').unix()
     };
-    return jwt.encode(payload, (process.env.TOKEN_SECRET || config.TOKEN_SECRET));
+    return jwt.encode(payload, process.env.TOKEN_SECRET);
   }
 
   /*
@@ -119,13 +119,13 @@ module.exports = function(app, express) {
   app.post('/auth/github', function(req, res) {
     var accessTokenUrl = 'https://github.com/login/oauth/access_token';
     var userApiUrl = 'https://api.github.com/user';
-    console.log('\n\n### req.body.redirectUri ###\n\n',req.body.redirectUri);
+    console.log('\n\n### req.body.redirectUri ###\n\n', req.body.redirectUri);
     if (req.body.redirectUri === 'http://localhost:8100') {
       console.log('\n\n### Mobile user is being authenticated.\n\n');
       var params = {
         code: req.body.code,
         client_id: req.body.clientId,
-        client_secret: process.env.GITHUB_MOBILE_SECRET || config.GITHUB_SECRET,
+        client_secret: process.env.GITHUB_MOBILE_SECRET,
         redirect_uri: req.body.redirectUri
       };
     } else {
@@ -133,7 +133,7 @@ module.exports = function(app, express) {
       var params = {
         code: req.body.code,
         client_id: req.body.clientId,
-        client_secret: process.env.GITHUB_SECRET || config.GITHUB_SECRET,
+        client_secret: process.env.GITHUB_SECRET,
         redirect_uri: req.body.redirectUri
       };
     }
@@ -166,7 +166,7 @@ module.exports = function(app, express) {
               });
             }
             var token = req.header('Authorization').split(' ')[1];
-            var payload = jwt.decode(token, (process.env.TOKEN_SECRET || config.TOKEN_SECRET));
+            var payload = jwt.decode(token, process.env.TOKEN_SECRET);
             User.findById(payload.sub, function(err, user) {
               if (!user) {
                 return res.status(400).send({
@@ -191,7 +191,6 @@ module.exports = function(app, express) {
             github: profile.id
           }, function(err, existingUser) {
             if (existingUser) {
-              console.log('hihihihi', existingUser);
               var token = createJWT(existingUser);
               return res.send({
                 token: token,

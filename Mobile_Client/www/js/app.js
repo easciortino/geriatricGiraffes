@@ -35,7 +35,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'hackoverflow.chat', 
 .config(function($stateProvider, $urlRouterProvider, $authProvider) {
 
   $authProvider.github({
-    clientId: '379777b89264293ccc3c',
+    clientId: '312af5a4505a304e2d29',
     url: 'http://hackoverflow2.herokuapp.com/auth/github'
   });
 

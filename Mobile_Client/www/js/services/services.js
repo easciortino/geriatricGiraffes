@@ -159,14 +159,12 @@ angular.module('hackoverflow.services', [])
         url: 'http://hackoverflow2.herokuapp.com/api/me/'
       })
       .then(function(response) {
-        console.log('response.data', response.data);
         user = response.data;
         return response;
       });
   };
 
   var returnUser = function() {
-    console.log('return user', user);
     return user;
   };
 
