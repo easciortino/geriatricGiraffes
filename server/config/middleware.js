@@ -126,7 +126,7 @@ module.exports = function(app, express) {
     var accessTokenUrl = 'https://github.com/login/oauth/access_token';
     var userApiUrl = 'https://api.github.com/user';
     var md = new MobileDetect(req.headers['user-agent']);
-    console.log('\n###MobileDetect\n',md);
+    console.log('\n###MobileDetect\n',md.maxPhoneWidth);
     var params = {
       code: req.body.code,
       client_id: req.body.clientId,
