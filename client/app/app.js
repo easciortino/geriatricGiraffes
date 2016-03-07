@@ -91,5 +91,5 @@ $stateProvider
     url: '/signin',
     templateUrl: 'app/auth/signin.html',
     controller: 'AuthController'
-  })
+  });
 });
