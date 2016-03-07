@@ -46,7 +46,6 @@ module.exports = {
 
       for (var prop in request.body) {
         post[prop] = request.body[prop];
-        console.log(prop)
       }
 
       post.save(function(err) {

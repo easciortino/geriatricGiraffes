@@ -26,13 +26,11 @@
 }
 
 .votes {
-/*  float: right;
-*/  font-weight: 600;
- margin: auto;
- width: 60%;
-/*  border: 3px solid #73AD21 ;*/
- padding: 10px;
- padding-left: 100px;
+  font-weight: 600;
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+  padding-left: 200px;
 }
 
 .sidebar {
@@ -52,6 +50,10 @@
 
 #posts-container {
   position: relative;
+}
+
+.cursor, .sidebar {
+  cursor: pointer;
 }
 
 .forum {
