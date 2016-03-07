@@ -3,8 +3,7 @@ angular.module('hackoverflow.posts', [
   'ui.router'
 ])
 
-.config(function ($httpProvider, $urlRouterProvider, $stateProvider) {
-})
+.config(function($httpProvider, $urlRouterProvider, $stateProvider) {})
 
 .controller('PostsController', function ($scope, $rootScope, $stateParams, $state, Posts, Comments, TimeService, ForumService, Auth) {
   $scope.posts = [];
@@ -13,7 +12,7 @@ angular.module('hackoverflow.posts', [
   // $scope.numberOfVotes = {};
   $scope.forum = ForumService.currentForum.model.forum;
   $scope.TimeService = TimeService;
-   
+
   Auth.getUser()
     .then(function(response){
         $rootScope.user = response.data.displayName;
@@ -21,7 +20,7 @@ angular.module('hackoverflow.posts', [
 
   $scope.getPosts = function getPosts(forum) {
     // TODO: need to pass in forum to Posts.getPosts()
-    Posts.getPosts('').then(function (data) {
+    Posts.getPosts('').then(function(data) {
       $scope.posts = data.data;
       // this creates an object $scope.numberOfComments that
       // keeps track of each posts number of comments. not
@@ -36,9 +35,12 @@ angular.module('hackoverflow.posts', [
       }
     });
   };
+  $scope.setUsername = function (username) {
+    console.log('redirecting to...' + username);
 
+  };
   $scope.getForums = function getForums(forum) {
-    Posts.getForums().then(function (data) {
+    Posts.getForums().then(function(data) {
       $scope.forums = data.data.sort();
     });
   };
@@ -57,9 +59,9 @@ angular.module('hackoverflow.posts', [
   };
 
   //CREATE function that appends each message to the chatbox
-  $scope.sendChat = function sendChat(message){
-    $("#messages").append($("<li>").text(message))
-  }
+  $scope.sendChat = function sendChat(message) {
+    $("#messages").append($("<li>").text(message));
+  };
 
   $scope.upVote = function(post) {
     post.votes++;

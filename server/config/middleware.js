@@ -34,7 +34,6 @@ module.exports = function(app, express) {
   app.use(helpers.errorLogger);
   app.use(helpers.errorHandler);
 
-
   /*
    |--------------------------------------------------------------------------
    | Login Required Middleware
@@ -65,7 +64,6 @@ module.exports = function(app, express) {
     req.user = payload.sub;
     next();
   }
-
 
   /*
    |--------------------------------------------------------------------------
@@ -114,7 +112,6 @@ module.exports = function(app, express) {
       });
     });
   });
-
 
   /*
    |--------------------------------------------------------------------------
@@ -225,7 +222,6 @@ module.exports = function(app, express) {
     });
   });
 
-
   /*
    |--------------------------------------------------------------------------
    | Unlink Provider
@@ -255,9 +251,6 @@ module.exports = function(app, express) {
       });
     });
   });
-
-
-
 
   //inject our routers into their respective route files
   require('../comments/commentRoutes.js')(commentRouter);
