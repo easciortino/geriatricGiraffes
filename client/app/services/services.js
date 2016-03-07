@@ -161,6 +161,7 @@ angular.module('hackoverflow.services', [])
       url: '/api/me/'
     })
     .then(function ( response ){
+      console.log('getting signed in', response);
       return response;
       });
     };
@@ -214,4 +215,3 @@ angular.module('hackoverflow.services', [])
   return socket;
 
 });
-
