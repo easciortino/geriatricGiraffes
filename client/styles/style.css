@@ -107,3 +107,7 @@ button {
   stroke: #000;
   shape-rendering: crispEdges;
 }
+
+.twoColumns {
+  width:50%;
+}
