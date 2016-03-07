@@ -125,7 +125,7 @@ module.exports = function(app, express) {
     var accessTokenUrl = 'https://github.com/login/oauth/access_token';
     var userApiUrl = 'https://api.github.com/user';
     console.log('\n\n### req.body.redirectUri ###\n\n',req.body.redirectUri);
-    if (req.body.redirectUri === 'http:\\localhost:8100') {
+    if (req.body.redirectUri === 'http://localhost:8100') {
       console.log('\n\n### Mobile user is being authenticated.\n\n');
       var params = {
         code: req.body.code,
