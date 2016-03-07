@@ -9,7 +9,6 @@ var logger = require('morgan');
 var jwt = require('jwt-simple');
 var moment = require('moment');
 var colors = require('colors');
-var MobileDetect = require('mobile-detect');
 
 // var config = require('./config');
 
@@ -125,9 +124,8 @@ module.exports = function(app, express) {
   app.post('/auth/github', function(req, res) {
     var accessTokenUrl = 'https://github.com/login/oauth/access_token';
     var userApiUrl = 'https://api.github.com/user';
-    var md = new MobileDetect(req.headers['user-agent']);
     console.log('\n\n### req.body.redirectUri ###\n\n',req.body.redirectUri);
-    if (md.maxPhoneWidth === 600) {
+    if (req.body.redirectUri === 'http:\\localhost:8100') {
       console.log('\n\n### Mobile user is being authenticated.\n\n');
       var params = {
         code: req.body.code,
