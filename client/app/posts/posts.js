@@ -12,7 +12,6 @@ angular.module('hackoverflow.posts', [
   $scope.numberOfComments = {};
   $scope.forum = ForumService.currentForum.model.forum;
   $scope.TimeService = TimeService;
-
    Auth.getUser()
       .then(function(response){
         $rootScope.user = response.data.displayName;
