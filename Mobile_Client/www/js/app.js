@@ -60,6 +60,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'hackoverflow.chat', 
 
   // Each tab has its own nav history stack:
   .state('tab.posts', {
+      params: {
+        'forum': 'Angular'
+      },
       url: '/posts',
       cache: false,
       views: {
@@ -75,6 +78,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'hackoverflow.chat', 
         'tab-posts': {
           templateUrl: 'js/posts/add-post.html',
           controller: 'AddPostController'
+        }
+      }
+    })
+    .state('tab.posts-edit-post', {
+      params: {
+        'post': null
+      },
+      url: '/edit-post',
+      views: {
+        'tab-posts': {
+          templateUrl: 'js/posts/add-post.html',
+          controller: 'EditPostController'
         }
       }
     })
