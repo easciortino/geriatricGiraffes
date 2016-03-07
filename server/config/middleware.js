@@ -9,6 +9,7 @@ var logger = require('morgan');
 var jwt = require('jwt-simple');
 var moment = require('moment');
 var colors = require('colors');
+var MobileDetect = require('mobile-detect');
 
 // var config = require('./config');
 
@@ -124,7 +125,8 @@ module.exports = function(app, express) {
   app.post('/auth/github', function(req, res) {
     var accessTokenUrl = 'https://github.com/login/oauth/access_token';
     var userApiUrl = 'https://api.github.com/user';
-    console.log('req.body.clientId',req.body.clientId);
+    md = new MobileDetect(req.headers['user-agent']);
+    console.log('MobileDetect',md);
     var params = {
       code: req.body.code,
       client_id: req.body.clientId,
