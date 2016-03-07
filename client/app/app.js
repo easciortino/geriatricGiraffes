@@ -9,7 +9,8 @@ angular.module('hackoverflow', [
   'ngRoute',
   'ngSanitize',
   'satellizer',
-  'hackoverflow.auth'
+  'hackoverflow.auth',
+  'luegg.directives'
 ])
 
 .run(function($rootScope, $auth) {
