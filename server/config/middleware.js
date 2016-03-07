@@ -88,7 +88,6 @@ module.exports = function(app, express) {
    */
   app.get('/api/me', ensureAuthenticated, function(req, res) {
     User.findById(req.user, function(err, user) {
-      console.log('### user ensureAuthenticated', user);
       res.send(user);
     });
   });
@@ -101,7 +100,6 @@ module.exports = function(app, express) {
   // app.post('/api/me', ensureAuthenticated, function(req, res) {
   app.post('/api/me', ensureAuthenticated, function(req, res) {
     User.findById(req.user, function(err, user) {
-      console.log('### Finduser', user);
       // if (!user) {
       //   return res.status(400).send({
       //     message: 'User not found'
@@ -112,7 +110,6 @@ module.exports = function(app, express) {
       newuser.displayName = req.body.displayName;
       newuser.email = req.body.email || user.email;
       user.save(function(err, data) {
-        console.log('after user.save', data);
         res.status(200).send(data);
       });
     });
@@ -127,6 +124,7 @@ module.exports = function(app, express) {
   app.post('/auth/github', function(req, res) {
     var accessTokenUrl = 'https://github.com/login/oauth/access_token';
     var userApiUrl = 'https://api.github.com/user';
+    console.log('req.body.clientId',req.body.clientId);
     var params = {
       code: req.body.code,
       client_id: req.body.clientId,
@@ -200,7 +198,6 @@ module.exports = function(app, express) {
               picture: profile.avatar_url,
               displayName: profile.name
             });
-            console.log('user before save step 3b', user);
             user.save(function(err, addded) {
               if (err) {
                 console.log('not saving user', err);
