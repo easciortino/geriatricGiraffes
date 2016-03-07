@@ -13,6 +13,11 @@ angular.module('hackoverflow.posts', [
   // $scope.numberOfVotes = {};
   $scope.forum = ForumService.currentForum.model.forum;
   $scope.TimeService = TimeService;
+   
+   Auth.getUser()
+      .then(function(response){
+        $rootScope.user = response.data.displayName;
+      });
 
   $scope.getPosts = function getPosts(forum) {
     // TODO: need to pass in forum to Posts.getPosts()
