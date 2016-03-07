@@ -8,13 +8,17 @@ angular.module('hackoverflow.profile', [
 .controller('UserController', function ($scope, TimeService, $state, Posts,Comments, $rootScope, Auth, $stateParams){
   $scope.latest = true;
   $scope.toggleLatest = function () {
+    var initial = 'Showing newest first';
     $scope.latest = !$scope.latest;
+    $scope.buttonText = $scope.buttonText === initial ? 'Showing oldest first' : initial;
   }
   $scope.TimeService = TimeService;
   $scope.username;
   $scope.userPosts = [];
   $scope.userComments = [];
   $scope.selectedUser = $stateParams.user;
+  $scope.buttonText = 'Showing newest first';
+
   console.log($stateParams, ' is selected');
   var dates;
   var canvas = d3.select("#userPosts");
@@ -23,15 +27,20 @@ angular.module('hackoverflow.profile', [
 
 
   Auth.getUser()
-    .then(function(user){
-      $scope.username = user.data.displayName;
-    })
+    .then(function(response){
+      console.log(response);
+        $rootScope.userPhoto = response.data.picture;
+        $rootScope.user = response.data.displayName;
+        $scope.username = response.data.displayName;
+    });
 
   Posts.getPosts('')
     .then(function(posts){
       posts.data.forEach(function(post) {
         if ( post.author === $scope.username ) $scope.userPosts.push(post);
+        var temp = post;
         post.comments.forEach(function(comment) {
+          comment.post = temp;
           if ( comment.author === $scope.username ) $scope.userComments.push(comment);
         })
       })
