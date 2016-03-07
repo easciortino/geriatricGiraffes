@@ -126,8 +126,8 @@ module.exports = function(app, express) {
     var accessTokenUrl = 'https://github.com/login/oauth/access_token';
     var userApiUrl = 'https://api.github.com/user';
     var md = new MobileDetect(req.headers['user-agent']);
-    console.log('\n###MobileDetect\n', md.maxPhoneWidth);
     if (md.maxPhoneWidth === 600) {
+      console.log('\n\n### Mobile user is being authenticated.\n\n');
       var params = {
         code: req.body.code,
         client_id: req.body.clientId,
@@ -135,6 +135,7 @@ module.exports = function(app, express) {
         redirect_uri: req.body.redirectUri
       };
     } else {
+      console.log('\n\n### Desktop user is being authenticated.\n\n');
       var params = {
         code: req.body.code,
         client_id: req.body.clientId,
