@@ -10,10 +10,6 @@ var jwt = require('jwt-simple');
 var moment = require('moment');
 var colors = require('colors');
 
-if (!process.env.GIT_KEY){
-  var config = require('./config');
-}
-
 module.exports = function(app, express) {
   var userRouter = express.Router();
   var commentRouter = express.Router();
