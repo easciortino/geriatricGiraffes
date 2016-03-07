@@ -47,8 +47,6 @@ module.exports = function(app, express) {
    |--------------------------------------------------------------------------
    */
   function ensureAuthenticated(req, res, next) {
-    console.log('ensureAuthenticated req header', req.header);
-    console.log('ensureAuthenticated req body', req.body);
     if (!req.header('Authorization')) {
       return res.status(401).send({
         message: 'Please make sure your request has an Authorization header'
@@ -107,7 +105,7 @@ module.exports = function(app, express) {
    |--------------------------------------------------------------------------
    */
   // app.post('/api/me', ensureAuthenticated, function(req, res) {
-  app.post('/api/me', function(req, res) {
+  app.post('/api/me', ensureAuthenticated, function(req, res) {
     User.findById(req.user, function(err, user) {
       console.log('### Finduser', user);
       // if (!user) {
@@ -183,7 +181,8 @@ module.exports = function(app, express) {
               user.save(function() {
                 var token = createJWT(user);
                 res.send({
-                  token: token
+                  token: token,
+                  id: user._id
                 });
               });
             });
@@ -194,9 +193,11 @@ module.exports = function(app, express) {
             github: profile.id
           }, function(err, existingUser) {
             if (existingUser) {
+              console.log('hihihihi', existingUser);
               var token = createJWT(existingUser);
               return res.send({
-                token: token
+                token: token,
+                id: existingUser._id
               });
             }
             var user = new User({
@@ -212,7 +213,8 @@ module.exports = function(app, express) {
               }
               var token = createJWT(user);
               res.send({
-                token: token
+                token: token,
+                id: user._id
               });
             });
           });

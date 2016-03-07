@@ -6,12 +6,17 @@ angular.module('hackoverflow.posts', [
 .config(function ($httpProvider, $urlRouterProvider, $stateProvider) {
 })
 
-.controller('PostsController', function ($scope, $stateParams, $state, Posts, Comments, TimeService, ForumService) {
+.controller('PostsController', function ($scope, $rootScope, $stateParams, $state, $window, Posts, Comments, TimeService, ForumService, Auth) {
   $scope.posts = [];
   $scope.forums = [];
   $scope.numberOfComments = {};
   $scope.forum = ForumService.currentForum.model.forum;
   $scope.TimeService = TimeService;
+
+   Auth.getUser()
+      .then(function(response){
+        $rootScope.user = response.data.displayName;
+      });
 
   $scope.getPosts = function getPosts(forum) {
     // TODO: need to pass in forum to Posts.getPosts()
