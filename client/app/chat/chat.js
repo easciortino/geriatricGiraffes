@@ -8,12 +8,17 @@ angular.module('hackoverflow.chat', [
 .controller('ChatController', function ($scope, socket, $state){
   $scope.msgs = [];
   $scope.sendMsg = function(){
-    socket.emit('send msg', $scope.msg.text);
+    var messageToSend = {
+      user: $scope.user,
+      msg: $scope.msg.text
+    };
+    console.log('messageToSend',messageToSend);
+    socket.emit('send msg', messageToSend);
     $scope.msg.text = '';
-  }
+  };
   socket.on('get msg', function(msg){
     $scope.msgs.push(msg);
 
     $scope.$digest();
-  })
-})
+  });
+});
