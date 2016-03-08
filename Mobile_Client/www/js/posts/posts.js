@@ -14,6 +14,7 @@ angular.module('hackoverflow.posts', [
     // TODO: need to pass in forum to Posts.getPosts()
     Posts.getPosts('').then(function(data) {
       $scope.posts = data.data;
+      console.log('$scope.posts',$scope.posts);
       // this creates an object $scope.numberOfComments that
       // keeps track of each posts number of comments. not
       // ideal, but works. need to refactor how we go
@@ -47,7 +48,6 @@ angular.module('hackoverflow.posts', [
 
   //http://stackoverflow.com/questions/27853431/ion-list-does-not-refresh-after-state-go-is-called
   $rootScope.$on('addedNewPost', function() {
-    console.log('I\'m listening');
     $scope.getPosts($scope.forum);
   });
 });
