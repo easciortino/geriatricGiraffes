@@ -151,3 +151,7 @@ button {
   clear:both;
   margin-left: 40px;
 }
+
+i.tiny.material-icons:hover {
+    color:#83c1e0;
+}
