@@ -10,7 +10,8 @@ angular.module('hackoverflow.chat', [
   $scope.sendMsg = function(){
     var messageToSend = {
       user: $scope.user,
-      msg: $scope.msg.text
+      msg: $scope.msg.text,
+      pic: 'img/logo.png'
     };
     console.log('messageToSend',messageToSend);
     socket.emit('send msg', messageToSend);

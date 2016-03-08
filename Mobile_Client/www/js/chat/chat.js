@@ -15,8 +15,9 @@ angular.module('hackoverflow.chat', [
     // sends message to server
 
     var messageToSend = {
-      user: $scope.user,
-      msg: msg
+      user: $scope.user.displayName,
+      pic: $scope.user.picture,
+      msg: msg,
     };
     console.log('messageToSend',messageToSend);
     socket.emit('send msg', messageToSend);
