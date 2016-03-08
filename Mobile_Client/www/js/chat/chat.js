@@ -9,11 +9,15 @@ angular.module('hackoverflow.chat', [
   $scope.msgs = [];
   $scope.text = '';
 
-  $scope.sendMsg = function(msg) {
+  $scope.sendMsg = function($scope.user, msg) {
     // greatest line of code ever written
     $scope.$$childTail.text = null;
     // sends message to server
-    socket.emit('send msg', msg);
+    var messageToSend = {
+      user: $scope.user,
+      msg: msg
+    }
+    socket.emit('send msg', messageToSend);
   };
   // client receives message from server
   socket.on('get msg', function(msg) {
