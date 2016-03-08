@@ -5,7 +5,7 @@ angular.module('hackoverflow.chat', [
   .config(function($stateProvider) {})
 
 .controller('ChatController', function($scope, socket, $state, Auth) {
-  $scope.thisUser = Auth.getUser();
+  $scope.thisUser = Auth.returnUser();
   $scope.msgs = [];
 
   $scope.sendMsg = function() {
