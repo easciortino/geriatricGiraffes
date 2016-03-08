@@ -2,7 +2,7 @@
   <div scroll-glue id="chatBox">
     <p class="messages" ng-repeat="msg in msgs track by $index">
       <b>{{msg.user}}:</b><br/>
-      {{msg.wmsg}}</p>
+      {{msg.msg}}</p>
   </div>
   <br/>
   <form ng-submit="sendMsg()" class="chat">
