@@ -12,14 +12,12 @@ angular.module('hackoverflow.chat', [
   $scope.sendMsg = function(msg) {
     // greatest line of code ever written
     $scope.$$childTail.text = null;
-    // sends message to server
-
     var messageToSend = {
       user: $scope.user.displayName,
       pic: $scope.user.picture,
       msg: msg,
     };
-    console.log('messageToSend',messageToSend);
+    // sends message to server
     socket.emit('send msg', messageToSend);
   };
   // client receives message from server
@@ -28,7 +26,6 @@ angular.module('hackoverflow.chat', [
     if ($state.is('tab.chats')) {
       $ionicScrollDelegate.scrollBottom();
     }
-    console.log('msg',msg);
     $scope.$digest();
   });
 });
